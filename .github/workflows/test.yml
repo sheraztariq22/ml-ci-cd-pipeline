@@ -22,5 +22,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install flask unittest2
 
+      - name: Verify File Structure
+        run: ls -R  # Lists all files to ensure app.py is present
+
       - name: Run Unit Tests
+        env:
+          PYTHONPATH: ${{ github.workspace }}  # Ensures test_app.py can find app.py
         run: python -m unittest discover -s .
